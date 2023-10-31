@@ -44,7 +44,7 @@ export class SidenavComponent implements OnInit {
           {
               "id": 2.1,
               "linktext": "Estabelecimentos",
-              "link": "establishments"
+              "link": "../../establishments"
           },
           {
             "id": 2.2,
@@ -65,43 +65,48 @@ export class SidenavComponent implements OnInit {
       },
       {
         "id": 4,
-        "linktext": "Gerenciar Aplicativo",
+        "linktext": "Aplicativo",
         "iconclass": "fa fa-mobile fs-16",
         "icon": "",
         "child": true,
         "submenu": [
           {
-              "id": 4.1,
+            "id": 4.1,
+            "linktext": "Tipos de Estabelecimentos",
+            "link": "../../admin/specialties"
+        },
+          {
+              "id": 4.2,
               "linktext": "Categorias",
               "link": "category"
           },
           {
-            "id": 4.2,
+            "id": 4.3,
             "linktext": "Cupons",
             "link": "coupons"
           },
           {
-            "id": 4.3,
+            "id": 4.4,
             "linktext": "Dimensões",
             "link": "dimensions"
           },
           {
-            "id": 4.4,
+            "id": 4.5,
             "linktext": "Notícias",
             "link": "news"
           },
           {
-            "id": 4.5,
+            "id": 4.6,
             "linktext": "Avaliações",
             "link": "assessments"
           },
           {
-            "id": 4.6,
+            "id": 4.7,
             "linktext": "Banners",
             "link": "banners"
           },
           {
-            "id": 4.7,
+            "id": 4.8,
             "linktext": "Alertas",
             "link": "alerts"
           }

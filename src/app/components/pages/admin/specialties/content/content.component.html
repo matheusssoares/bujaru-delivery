@@ -1,0 +1,63 @@
+<div class="ms-content-wrapper">
+    <div class="row">
+        <div class="col-md-12">
+          <app-breadcrumb></app-breadcrumb>
+        </div>
+    </div>
+    <div class="row ms-todo-list">
+        <div class="col-md-6 col-sm-12 ms-deletable">
+            <div class="ms-card">
+                <div class="ms-card-header clearfix">
+                    <h6 class="ms-card-title">Tipos de estabelecimentos</h6>
+                    <button placement="left"
+                        class="ms-add-task-to-block ms-btn-icon float-right bg-primary" type="button" (click)="open(taskModal)">
+                        <i class="material-icons text-disabled">add</i> </button>
+                </div>
+                <div class="ms-card-body">
+                    <ul class="ms-list ms-task-block">
+                        <li class="ms-list-item ms-to-do-task ms-deletable"
+                            *ngFor="let task of itens; let i = index;">
+                            <label class="ms-switch">
+                              <input (change)="changeFn(task)" type="checkbox" [value]="task.status" [checked]="task.status">
+                              <span class="ms-switch-slider round"></span>
+                            </label>
+                            <span> {{ task.nome }} </span>
+                            
+                            <button type="button" class="close">
+                                <i class="flaticon-trash ms-delete-trigger" (click)="remove(task)"> </i>
+                            </button>
+
+                            <button type="button" class="close">
+                                <i class="flaticon-pencil ms-delete-trigger" (click)="update(taskModal, task)"> </i>
+                              </button>
+                        </li>
+                    </ul>
+                </div>
+                                
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #taskModal let-modal>
+    <div class="modal-header bg-secondary">
+        <h5 class="modal-title has-icon text-white"> {{ title }}</h5>
+        <button type="button" class="close" (click)="modal.dismiss('Cross click')">
+            <span>×</span>
+        </button>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="clearfix">
+        <div class="modal-body">
+            <div class="ms-form-group">
+                <label>NOME</label>
+                <input type="text" class="form-control" formControlName="nome" />
+            </div>
+        </div>
+        <div class="modal-footer">            
+            <button type="button" class="btn btn-light" (click)="modal.dismiss('Cross click')">Fechar</button>
+            <button [disabled]="form.invalid" class="btn btn-secondary shadow-none"
+            type="submit">{{ getTitleBtn() }}</button>
+        </div>
+    </form>
+    
+</ng-template>

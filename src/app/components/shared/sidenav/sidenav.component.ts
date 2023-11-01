@@ -44,7 +44,7 @@ export class SidenavComponent implements OnInit {
           {
               "id": 2.1,
               "linktext": "Estabelecimentos",
-              "link": "../../establishments"
+              "link": "../../admin/establishments"
           },
           {
             "id": 2.2,

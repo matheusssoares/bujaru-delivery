@@ -9,6 +9,8 @@ const routes: Routes = [
   { path: 'dashboard/home', loadChildren: () => import('./components/pages/home/home.module').then(m => m.HomeModule), data: { breadcrumb: "Homepage" } },
   // ADMIN
   { path: 'admin/specialties', loadChildren: () => import('./components/pages/admin/specialties/specialties.module').then(m => m.SpecialtiesModule), data: { breadcrumb: "Tipos de estabelecimentos" } },
+  { path: 'admin/establishments', loadChildren: () => import('./components/pages/admin/establishments/establishments.module').then(m => m.EstablishmentsModule), data: { breadcrumb: "Estabelecimentos" } },
+  { path: 'admin/establishments/new', loadChildren: () => import('./components/pages/admin/establishments-new/establishments-new.module').then(m => m.EstablishmentsModule), data: { breadcrumb: "Adicionar Estabelecimento"} }
   //{ path: 'prebuilt-pages/default-login', loadChildren: () => import('./components/pages/prebuilt-pages/default-login/default-login.module').then(m => m.DefaultLoginModule), data: { breadcrumb: "Default Login" } },
   // Product
   /* { path: 'product/product-catalogue', loadChildren: () => import('./components/pages/product/product-catalogue/product-catalogue.module').then(m => m.ProductCatalogueModule), data: { breadcrumb: "Product Catalogue" } },

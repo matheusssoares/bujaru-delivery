@@ -1,170 +1,313 @@
 <div class="ms-content-wrapper">
-    <div class="row">
-        <div class="col-md-12">
-          <app-breadcrumb></app-breadcrumb>
-        </div>
+  <div class="row">
+    <div class="col-md-12">
+      <app-breadcrumb></app-breadcrumb>
     </div>
+  </div>
 
-    <div class="ms-panel">
-        <div class="ms-panel-header">
-            <div class="row">
-                <div class="col-md-6">
-                    <h6>Adicionar estabelecimento</h6>
+  <div class="ms-panel">
+    <div class="ms-panel-body">
+      <div class="ms-panel-body clearfix">
+        <ul ngbNav #nav="ngbNav" class="nav nav-tabs d-flex nav-justified mb-4">
+          <li [ngbNavItem]="1">
+            <a ngbNavLink (click)="changed(1)">Responsável</a>
+            <ng-template ngbNavContent>
+              <form [formGroup]="form" (ngSubmit)="onSubmit()" class="clearfix">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="ms-wizard-step">
+                      <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                          <label>Nome completo</label>
+                          <div class="input-group">
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="Nome completo"
+                              formControlName="nome"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                          <label>E-mail</label>
+                          <div class="input-group">
+                            <input
+                              type="email"
+                              class="form-control"
+                              placeholder="E-mail"
+                              formControlName="email"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-12 mb-2">
+                          <label>Contato</label>
+                          <div class="input-group">
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="contato"
+                              formControlName="contato"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button
+                        [disabled]="step === 1"
+                        type="button"
+                        class="btn btn-light"
+                        (click)="voltar()"
+                      >
+                        Anterior
+                      </button>
+                      <button
+                        [disabled]="form.invalid"
+                        class="btn btn-primary shadow-none"
+                        type="submit"
+                      >
+                        Próximo
+                      </button>
+                    </div>
+                  </div>
                 </div>
-            </div>
+              </form>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="2" [disabled]="step === 1">
+            <a ngbNavLink (click)="changed(2)">Endereço </a>
+            <ng-template ngbNavContent>
+              <form
+                [formGroup]="form2"
+                (ngSubmit)="onSubmit()"
+                class="clearfix"
+              >
+                <div class="row">
+                  <div class="col-md-8">
+                    <div class="ms-wizard-step">
+                      <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                          <label>CEP</label>
+                          <div class="input-group">
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="CEP"
+                              formControlName="cep"
+                            />
+                          </div>
+                        </div>
 
-        </div>
-        <div class="ms-panel-body">
-            <div class="row">
-              <div class="col-md-6">
-                <ng-wizard [config]="defaultconfig" (stepChanged)="stepChanged($event)"  class="ms-form-wizard style1-wizard">
-                  <ng-wizard-step [title]="'Responsável'">
-                      <div class="ms-wizard-step">
-                          <div class="form-row">
-                              <div class="col-md-6 mb-3">
-                                  <label>First name</label>
-                                  <div class="input-group">
-                                      <input type="text" class="form-control" placeholder="First name" value="John">
-                                  </div>
-                              </div>
-                              <div class="col-md-6 mb-3">
-                                  <label>Last name</label>
-                                  <div class="input-group">
-                                      <input type="text" class="form-control" placeholder="Last name" value="Doe">
-                                  </div>
-                              </div>
+                        <div class="col-md-6 mb-3">
+                          <label>Estado</label>
+                          <div class="input-group">
+                            <input
+                              type="email"
+                              class="form-control"
+                              placeholder="Estado"
+                              formControlName="estado"
+                            />
                           </div>
-                          <div class="form-row">
-                              <div class="col-md-12 mb-3">
-                                  <label>Email Address</label>
-                                  <div class="input-group">
-                                      <input type="email" class="form-control" placeholder="Email Address">
-                                  </div>
-                              </div>
-                              <div class="col-md-12 mb-2">
-                                  <label>Password</label>
-                                  <div class="input-group">
-                                      <input type="password" class="form-control" placeholder="Password">
-                                  </div>
-                              </div>
-                          </div>
+                        </div>
                       </div>
-                  </ng-wizard-step>
-                  <ng-wizard-step [title]="'Endereço'">
-                      <div class="ms-wizard-step">
-                          <div class="form-row">
-                              <div class="col-md-12">
-                                  <label>Payment Method</label>
-                                  <ul class="ms-payment-container">
-                                      <li>
-                                          <div class="ms-radio-img">
-                                              <input type="radio" name="payment-method" value="">
-                                              <div class="ms-payment-img">
-                                                  <img src="assets/img/payment/payment-payoneer.png" alt="payment">
-                                              </div>
-                                          </div>
-                                      </li>
-                                      <li>
-                                          <div class="ms-radio-img">
-                                              <input type="radio" name="payment-method" value="">
-                                              <div class="ms-payment-img">
-                                                  <img src="assets/img/payment/payment-visa.png" alt="payment">
-                                              </div>
-                                          </div>
-                                      </li>
-                                      <li>
-                                          <div class="ms-radio-img">
-                                              <input type="radio" name="payment-method" value="">
-                                              <div class="ms-payment-img">
-                                                  <img src="assets/img/payment/payment-paypal.png" alt="payment">
-                                              </div>
-                                          </div>
-                                      </li>
-                                      <li>
-                                          <div class="ms-radio-img">
-                                              <input type="radio" name="payment-method" value="">
-                                              <div class="ms-payment-img">
-                                                  <img src="assets/img/payment/payment-master.png" alt="payment">
-                                              </div>
-                                          </div>
-                                      </li>
-                                  </ul>
-                              </div>
+
+                      <div class="form-row">
+                        <div class="col-md-6 mb-2">
+                          <label>Cidade</label>
+                          <div class="input-group">
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="Cidade"
+                              formControlName="cidade"
+                            />
                           </div>
-                          <div class="form-row">
-                              <div class="col-xl-6 col-md-12 mb-3">
-                                  <label>Card Holder Name</label>
-                                  <div class="input-group">
-                                      <input type="text" class="form-control" placeholder="Card Holder Name">
-                                  </div>
-                              </div>
-                              <div class="col-xl-6 col-md-12">
-                                  <label>Card Number</label>
-                                  <div class="input-group">
-                                      <input type="text" class="form-control" placeholder="Card Number">
-                                  </div>
-                              </div>
-                              <div class="col-xl-4 col-md-12">
-                                  <label>Month</label>
-                                  <div class="input-group">
-                                      <select class="form-control">
-                                          <option value="">01</option>
-                                          <option value="">02</option>
-                                          <option value="">03</option>
-                                          <option value="">04</option>
-                                          <option value="">05</option>
-                                          <option value="">06</option>
-                                          <option value="">07</option>
-                                          <option value="">08</option>
-                                          <option value="">09</option>
-                                          <option value="">10</option>
-                                          <option value="">11</option>
-                                          <option value="">12</option>
-                                      </select>
-                                  </div>
-                              </div>
-                              <div class="col-xl-4 col-md-12">
-                                  <label>Year</label>
-                                  <div class="input-group">
-                                      <select class="form-control">
-                                          <option value="">2022</option>
-                                          <option value="">2022</option>
-                                          <option value="">2022</option>
-                                          <option value="">2023</option>
-                                          <option value="">2024</option>
-                                          <option value="">2025</option>
-                                          <option value="">2026</option>
-                                          <option value="">2027</option>
-                                          <option value="">2028</option>
-                                          <option value="">2029</option>
-                                          <option value="">2030</option>
-                                      </select>
-                                  </div>
-                              </div>
-                              <div class="col-xl-4 col-md-12">
-                                  <label placement="left" ngbTooltip="3 digit number at the back of your card">CVV <i class="material-icons">info_outline</i> </label>
-                                  <div class="input-group">
-                                      <input type="text" class="form-control" placeholder="CVV">
-                                  </div>
-                              </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label>Bairro</label>
+                          <div class="input-group">
+                            <input
+                              type="email"
+                              class="form-control"
+                              placeholder="Bairro"
+                              formControlName="bairro"
+                            />
                           </div>
+                        </div>
                       </div>
-                  </ng-wizard-step>
-                  <ng-wizard-step [title]="'Dados da loja'">
-                      <div class="ms-wizard-step">
-                          <p>
-                              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever
-                              since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
-                              but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
-                              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever
-                              since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
-                              but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
-                          </p>
+
+                      <div class="form-row">
+                        <div class="col-md-12 mb-2">
+                          <label>Endereço</label>
+                          <div class="input-group">
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="Endereço"
+                              formControlName="endereco"
+                            />
+                          </div>
+                        </div>
                       </div>
-                  </ng-wizard-step>
-              </ng-wizard>
-              </div>
-            </div>
-        </div>
+
+                      <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                          <label>Número</label>
+                          <div class="input-group">
+                            <input
+                              type="email"
+                              class="form-control"
+                              placeholder="Número"
+                              formControlName="numero"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                          <label>Complemento</label>
+                          <div class="input-group">
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="Complemento"
+                              formControlName="complemento"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        [disabled]="step === 1"
+                        type="button"
+                        class="btn btn-light"
+                        (click)="voltar()"
+                      >
+                        Anterior
+                      </button>
+                      <button
+                        [disabled]="form2.invalid"
+                        class="btn btn-primary shadow-none"
+                        type="submit"
+                      >
+                        Próximo
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="3" [disabled]="step === 1 || step === 2">
+            <a ngbNavLink (click)="changed(3)">Loja </a>
+            <ng-template ngbNavContent>
+              <form
+                [formGroup]="form3"
+                (ngSubmit)="onSubmit()"
+                class="clearfix"
+              >
+                <div class="row">
+                  <div class="col-md-7">
+                    <div class="ms-wizard-step">
+                      <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                          <label>Nome do estabelecimento</label>
+                          <div class="input-group">
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="Nome do estabelecimento"
+                              formControlName="nomeEstabelecimento"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                          <label>WhatsApp</label>
+                          <div class="input-group">
+                            <input
+                              type="email"
+                              class="form-control"
+                              placeholder="WhatsApp"
+                              formControlName="whatsappEstabelecimento"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                          <label for="exampleSelect">Especialidade</label>
+                          <select
+                            class="form-control"
+                            id="exampleSelect"
+                            formControlName="especialidade"
+                          >
+                            <option
+                              *ngFor="let i of especialidades"
+                              [value]="i"
+                            >
+                              {{ i.nome }}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="form-row">
+                        <div class="col-md-6 mb-2">
+                          <label for="exampleSelect2">Tipo de chave pix</label>
+                          <select
+                            class="form-control"
+                            id="exampleSelect2"
+                            formControlName="especialidade"
+                          >
+                            <option value="1">E-mail</option>
+                            <option value="2">Celular</option>
+                            <option value="3">CPF</option>
+                            <option value="4">Aleatória</option>
+                          </select>
+                        </div>
+
+                        <div class="col-md-6 mb-2">
+                          <label>Chave pix</label>
+                          <div class="input-group">
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="Chave pix"
+                              formControlName="chavePix"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button
+                        [disabled]="step === 2"
+                        type="button"
+                        class="btn btn-light"
+                        (click)="voltar()"
+                      >
+                        Anterior
+                      </button>
+                      <button
+                        [disabled]="form3.invalid"
+                        class="btn btn-primary shadow-none"
+                        type="submit"
+                      >
+                        Finalizar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </ng-template>
+          </li>
+        </ul>
+        <div [ngbNavOutlet]="nav"></div>
+      </div>
     </div>
+  </div>
 </div>
+<div class="fim"></div>

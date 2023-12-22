@@ -19,7 +19,10 @@ export class ContentComponent implements OnInit {
   title: string = 'Adicionar tipo de estabelecimento'
   subscription: Array<Subscription> = []
   $itens: Observable<Especialidade[]>
-  form: FormGroup
+  form: FormGroup = new FormGroup({
+    nome: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    id: new FormControl(''),
+  })
   isFormUpdate: boolean = false
   uidActive: string
 
@@ -30,11 +33,6 @@ export class ContentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.form = new FormGroup({
-      nome: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      id: new FormControl(''),
-    })
-
     this.getItens()
   }
 

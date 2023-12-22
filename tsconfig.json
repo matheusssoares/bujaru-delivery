@@ -25,6 +25,7 @@
     "enableI18nLegacyMessageIdFormat": false,
     "enableIvy": true,
     "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
+    "strictInjectionParameters": true,
+    "typescript.suggest.completeFunctionCalls": true,
   }
 }

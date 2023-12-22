@@ -242,9 +242,10 @@
                             class="form-control"
                             id="exampleSelect"
                             formControlName="especialidade"
+                            (change)="onEspecialidadeChange($event)"
                           >
                             <option
-                              *ngFor="let i of especialidades"
+                              *ngFor="let i of $itensSpecialts | async"
                               [value]="i"
                             >
                               {{ i.nome }}
@@ -259,7 +260,7 @@
                           <select
                             class="form-control"
                             id="exampleSelect2"
-                            formControlName="especialidade"
+                            formControlName="tipoChavePix"
                           >
                             <option value="1">E-mail</option>
                             <option value="2">Celular</option>
